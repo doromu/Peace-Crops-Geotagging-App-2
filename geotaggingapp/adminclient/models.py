@@ -23,7 +23,6 @@ class Record(models.Model):
     plantID = models.ForeignKey(Plant, on_delete=models.CASCADE, default = '')
     date = models.DateField()
     time = models.TimeField()
-    
 
 
 

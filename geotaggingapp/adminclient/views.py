@@ -1,7 +1,9 @@
 # Create your views here.
 
 from django.shortcuts import render, HttpResponse
-import requests
+from django.shortcuts import render
+from django.conf import settings
+from qrcode import *
 
 # THIS IS OUR API KEY DO NOT LOSE IT
 # if we lose it i can just go get it again but yea
@@ -21,7 +23,16 @@ def get_ip_geolocation_data(ip_address):
 
     print(response.content)
 
-
+data=None
+def qr_gen(request):
+    global data
+    if request.method=="POST":
+        data=request.POST['data']
+        img=make(data)
+        img.save("static/image/test.png")
+    else:
+        pass
+    return render(request,"index.html",{'data':data})
 
 def adminclientview(request):
 
