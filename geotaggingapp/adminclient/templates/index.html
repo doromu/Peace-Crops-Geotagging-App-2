@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Geotagging App</title>
+
+        <style>
+            div {
+                height: 5em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+            }
+        </style>
+        <div>
+            <form action="/send" method="post">
+                {% csrf_token %}
+                <h2 id="h1">Geotagging App</h2>
+            </form>
+        </div>
+    </head>
+    {% load static %}
+    <link rel="stylesheet" href ="{% static 'style.css' %}">
+    <body>
+
+        <div>
+            <form action="/send" method="post">
+                {% csrf_token %}
+                <h3 id="h1">Enter Data For Generating QR Code <input type="text" name="data" ></h3>
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+        <div>
+            {% if data %}
+            <h4>Your QR Code is:</h4>
+                <img src="{% static 'image/test.png' %}">
+            {% endif %}
+        </div>
+        <div>
+            <form action="/send" method="post">
+                {% csrf_token %}
+                <h5 id="h1"><br><br><br><br><br><br><br>Coordinates </h5>
+                <h5 id="h1">Latitude: {{lat}}</h5>
+                <h5 id="h1">Longitude: {{long}}</h5>
+            </form>
+        </div>
+
+    </body>
+</html>
